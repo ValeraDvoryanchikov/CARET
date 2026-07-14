@@ -9,12 +9,82 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="/" class="logo-link">
-                <img src="logo/logo.png" alt="CARET" class="logo-img">
-            </a>
+            
+            <!-- ЧАСТЬ 1: Логотип сверху (справа от него пустое место) -->
+            <div class="logo-box">
+                <a href="/">
+                    <img src="logo/logo.png" alt="CARET" class="logo-img">
+                </a>
+            </div>
+            
+            <!-- Основной ряд, где меню и контент стоят на одном уровне -->
+            <div class="main-row">
+                
+                <!-- ЧАСТЬ 2: Меню слева -->
+                <nav class="main-menu">
+                    <ul class="top-level">
+                        <!-- Кнопка «Главная» показывает текст -->
+                        <li><a href="#" class="menu-btn" data-target="main-text">Главная</a></li>
+                        
+                        <li class="has-children">
+                            <a href="#">Присадки ▾</a>
+                            <ul class="dropdown">
+                                <li><a href="#">Присадки в масло</a></li>
+                                <li><a href="#">Присадки в бензин</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="#" class="menu-btn" data-target="main-text">О нас</a></li>
+                        <li><a href="#" class="menu-btn" data-target="main-text">Портфолио</a></li>
+                        
+                        <!-- Кнопка «Сертификаты» показывает картинку -->
+                        <li><a href="#" class="menu-btn" data-target="certificate-box">Сертификаты</a></li>
+                        
+                        <li><a href="#" class="menu-btn" data-target="main-text">Ответы на вопросы</a></li>
+                        <li><a href="#" class="menu-btn" data-target="main-text">Контакты</a></li>
+                    </ul>
+                </nav>
 
-            <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque, accusantium quod obcaecati dolorum est unde sit sed doloremque a nobis iusto, enim numquam sequi eveniet veniam aliquid quasi officiis doloribus.</h1>
+                <!-- ЧАСТЬ 3: Область контента справа (на одном уровне с меню) -->
+                <main class="content-area">
+                    
+                    <!-- Блок со стартовым текстом (показывается сразу) -->
+                    <div id="main-text" class="content-block active">
+                        <h1>Добро пожаловать в CARET</h1>
+                        <p>Выберите интересующий пункт меню слева.</p>
+                    </div>
+
+                    <!-- Блок с картинкой сертификата (скрыт, пока не кликнем) -->
+                    <div id="certificate-box" class="content-block">
+                        <img src="docs/certificate.jpg" alt="Сертификат CARET" class="certificate-photo">
+                    </div>
+                    
+                </main>
+
+            </div> <!-- Конец основного ряда -->
+
         </div>
     </header>
+
+    <!-- СКРИПТ: Меняет контент при клике -->
+    <script>
+        // Находим все ссылки с классом 'menu-btn'
+        document.querySelectorAll('.menu-btn').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Отменяем переход по ссылке
+                
+                // Скрываем абсолютно ВСЕ блоки справа
+                document.querySelectorAll('.content-block').forEach(block => {
+                    block.classList.remove('active');
+                });
+                
+                // Берем имя блока из настройки data-target="..." clicked-ссылки
+                const targetId = this.getAttribute('data-target');
+                
+                // Показываем именно этот блок
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,22 +1,122 @@
+/* Базовые настройки сброса отступов */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Фон всей страницы */
+.site-header {
+    background-color: #000000;
+    padding: 30px 0;
+    min-height: 100vh; /* Страница всегда черная на всю высоту экрана */
+}
+
+/* Ограничитель ширины сайта */
 .container {
     width: 1200px;
     margin: 0 auto;
 }
 
-/* Черный фон для шапки */
-.site-header {
-    background-color: #000000;
-    padding: 10px 0; /* Отступы сверху и снизу, чтобы картинка не прилипала */
+/* --- ЧАСТЬ 1: ЛОГОТИП (СВЕРХУ) --- */
+.logo-box {
+    width: 100%;
+    margin-bottom: 40px; /* Отступ вниз, отделяющий логотип от меню */
 }
 
-/* Уменьшенный размер логотипа */
 .logo-img {
-    height: 100px; /* Задает высоту картинки. Можете менять это число */
-    width: auto;  /* Сохраняет пропорции логотипа */
+    height: 100px; 
+    width: auto;  
+    display: block;
+}
+
+/* --- РЯД: МЕНЮ + КОНТЕНТ (НИЖЕ ЛОГОТИПА) --- */
+.main-row {
+    display: flex;            /* Ставит меню и контентную зону в один ряд */
+    align-items: flex-start;  /* Выравнивает их верхние края идеально ровно */
+}
+
+/* --- ЧАСТЬ 2: МЕНЮ (СЛЕВА) --- */
+.main-menu {
+    width: 250px;             /* Фиксированная ширина меню */
+    flex-shrink: 0;           /* Запрещает меню сжиматься */
+}
+
+.top-level {
+    list-style: none;         /* Убирает точки у списка */
+}
+
+.top-level > li {
+    margin-bottom: 12px;      /* Расстояние между кнопками меню */
+}
+
+.main-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    display: block;
+    padding: 4px 0;
+}
+
+.main-menu a:hover {
+    color: #aaaaaa;           /* Цвет букв при наведении мышки */
+}
+
+/* Вложенное меню (Присадки) */
+.dropdown {
+    list-style: none;
+    display: none;            /* По умолчанию скрыто */
+    padding-top: 8px;     
+    padding-left: 15px;       /* Сдвиг вправо для красивой вложенности */
+}
+
+.dropdown li {
+    margin-bottom: 8px;   
+}
+
+.dropdown a {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+/* Показываем присадки в масло/бензин только при наведении */
+.has-children:hover .dropdown {
+    display: block;       
+}
+
+/* --- ЧАСТЬ 3: КОНТЕНТ (СПРАВА) --- */
+.content-area {
+    flex-grow: 1;             /* Занимает всю оставшуюся ширину справа */
+    margin-left: 60px;        /* Расстояние между меню и контентом */
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.content-area h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.content-area p {
+    font-size: 16px;
+    color: #cccccc;
+}
+
+/* Настройки для картинки сертификата */
+.certificate-photo {
+    max-width: 100%;          /* Картинка автоматически подстроится под размер области */
+    height: auto;             /* Не искажает пропорции фото */
+    border-radius: 6px;       /* Аккуратные скругленные уголки */
+    display: block;
+}
+
+/* --- ЛОГИКА ПЕРЕКЛЮЧЕНИЯ (Прячем/Показываем) --- */
+
+.content-block {
+    display: none;            /* По умолчанию прячем и текст, и картинку */
+}
+
+.content-block.active {
+    display: block;           /* Показываем только тот блок, у которого есть класс .active */
 }
