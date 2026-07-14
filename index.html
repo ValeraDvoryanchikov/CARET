@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница</title>
     <link rel="stylesheet" href="css/main.css">
+    <!-- Подключение библиотеки иконок Font Awesome -->
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
+
 <body>
     <header class="site-header">
         <div class="container">
-            
-            <!-- ЧАСТЬ 1: Логотип сверху (справа от него пустое место) -->
+
+            <!-- ЧАСТЬ 1: Логотип сверху и блок связи справа -->
             <div class="logo-box">
                 <a href="/">
                     <img src="logo/logo.png" alt="CARET" class="logo-img">
                 </a>
+                <div class="logo-contact-info">
+                    <span class="logo-contact-text">Для связи с нами:</span>
+                    <a href="tel:+79996760382" class="logo-phone">
+                        <i class="fa-solid fa-phone phone-icon"></i>+7 999 676-03-82
+                    </a>
+                </div>
             </div>
-            
+
             <!-- Основной ряд, где меню и контент стоят на одном уровне -->
             <div class="main-row">
-                
+
                 <!-- ЧАСТЬ 2: Меню слева -->
                 <nav class="main-menu">
                     <ul class="top-level">
                         <!-- Кнопка «Главная» показывает текст -->
                         <li><a href="#" class="menu-btn" data-target="main-text">Главная</a></li>
-                        
+
                         <li class="has-children">
                             <a href="#">Присадки ▾</a>
                             <ul class="dropdown">
@@ -33,13 +43,13 @@
                                 <li><a href="#">Присадки в бензин</a></li>
                             </ul>
                         </li>
-                        
+
                         <li><a href="#" class="menu-btn" data-target="main-text">О нас</a></li>
                         <li><a href="#" class="menu-btn" data-target="main-text">Портфолио</a></li>
-                        
+
                         <!-- Кнопка «Сертификаты» показывает картинку -->
                         <li><a href="#" class="menu-btn" data-target="certificate-box">Сертификаты</a></li>
-                        
+
                         <li><a href="#" class="menu-btn" data-target="main-text">Ответы на вопросы</a></li>
                         <li><a href="#" class="menu-btn" data-target="main-text">Контакты</a></li>
                     </ul>
@@ -47,7 +57,7 @@
 
                 <!-- ЧАСТЬ 3: Область контента справа (на одном уровне с меню) -->
                 <main class="content-area">
-                    
+
                     <!-- Блок со стартовым текстом (показывается сразу) -->
                     <div id="main-text" class="content-block active">
                         <h1>Добро пожаловать в CARET</h1>
@@ -58,7 +68,7 @@
                     <div id="certificate-box" class="content-block">
                         <img src="docs/certificate.jpg" alt="Сертификат CARET" class="certificate-photo">
                     </div>
-                    
+
                 </main>
 
             </div> <!-- Конец основного ряда -->
@@ -70,21 +80,22 @@
     <script>
         // Находим все ссылки с классом 'menu-btn'
         document.querySelectorAll('.menu-btn').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault(); // Отменяем переход по ссылке
-                
+
                 // Скрываем абсолютно ВСЕ блоки справа
                 document.querySelectorAll('.content-block').forEach(block => {
                     block.classList.remove('active');
                 });
-                
+
                 // Берем имя блока из настройки data-target="..." clicked-ссылки
                 const targetId = this.getAttribute('data-target');
-                
+
                 // Показываем именно этот блок
                 document.getElementById(targetId).classList.add('active');
             });
         });
     </script>
 </body>
+
 </html>
