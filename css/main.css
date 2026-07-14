@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* Черный фон для шапки */
+.site-header {
+    background-color: #000000;
+    padding: 10px 0; /* Отступы сверху и снизу, чтобы картинка не прилипала */
+}
+
+/* Уменьшенный размер логотипа */
+.logo-img {
+    height: 100px; /* Задает высоту картинки. Можете менять это число */
+    width: auto;  /* Сохраняет пропорции логотипа */
+}
